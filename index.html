@@ -3,14 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000;
+      color: #eee;
+      font-family: sans-serif;
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+    }
+    
+    input {
+      padding: 12px;
+      font-size: 20px;
+      width: 220px;
+      text-align: center;
+      background: #111;
+      color: #eee;
+      border: 1px solid #444;
+      border-radius: 6px;
+    }
+    
+    button {
+      padding: 12px 50px;
+      font-size: 18px;
+      background: #222;
+      color: #eee;
+      border: 1px solid #555;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background: #333;
+    }
+    
+    #error {
+      color: #ff4444;
+      font-weight: bold;
+      min-height: 30px;
+    }
+  </style>
 </head>
-<body style="font-family:sans-serif; text-align:center; padding:50px; background:#000; color:#eee;">
-  <h1></h1>
-  <input type="text" id="kod" placeholder="ㅤ" style="padding:12px; font-size:20px; width:200px;">
-  <br><br>
-  <button onclick="sprawdz()" style="padding:12px 40px; font-size:18px;">?</button>
+<body>
+
+  <input type="text" id="kod" placeholder="ㅤ" autocomplete="off">
   
-  <p id="error" style="color:#ff4444; font-weight:bold; min-height:30px;"></p>
+  <button onclick="sprawdz()">?</button>
+  
+  <p id="error"></p>
 
   <script>
   function sprawdz() {
@@ -18,9 +64,10 @@
     if (wpisany === "6222") {
       window.location.href = "tajne.html";
     } else {
-      document.getElementById("error").innerText = "...";
+      document.getElementById("error").innerText = "ㅤ"; // nadal puste, jak chciałeś
     }
   }
   </script>
+
 </body>
 </html>
