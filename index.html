@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body style="font-family:sans-serif; text-align:center; padding:50px; background:#111; color:#eee;">
+  <h1></h1>
+  <input type="text" id="kod" placeholder="..." style="padding:12px; font-size:20px; width:280px;">
+  <br><br>
+  <button onclick="sprawdz()" style="padding:12px 40px; font-size:18px;">..</button>
+  
+  <p id="error" style="color:#ff4444; font-weight:bold; min-height:30px;"></p>
+
+  <script>
+  function sprawdz() {
+    const wpisany = document.getElementById("kod").value.trim();
+    if (wpisany === "6222") {
+      window.location.href = "tajne.html";
+    } else {
+      document.getElementById("error").innerText = "...";
+    }
+  }
+  </script>
+</body>
+</html>
