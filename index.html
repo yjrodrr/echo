@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title></title>
@@ -42,24 +42,24 @@
 </head>
 <body>
 
-  <input type="text" id="kod" placeholder="ㅤ" autocomplete="off" 
+  <input type="text" id="code" placeholder="ㅤ" autocomplete="off" 
          oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
-  <button onclick="sprawdz()">?</button>
+  <button onclick="check()">?</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
   <script>
-  const POPRAWNY_HASH = "f52a3a2310f9d8e8e7c0d8c5d8d7d8d7d8d7d8d7d8d7d8d7d8d7d8d7d8d7d8d7";
+  const CORRECT_HASH = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
 
-  function sprawdz() {
-    const wpisany = document.getElementById("kod").value.trim();
+  function check() {
+    const entered = document.getElementById("code").value.trim();
     
-    if (!wpisany) return;
+    if (!entered) return;
 
-    const hashWpisany = sha256(wpisany);
+    const enteredHash = sha256(entered);
 
-    if (hashWpisany === POPRAWNY_HASH) {
-      window.location.href = "tajne.html";
+    if (enteredHash === CORRECT_HASH) {
+      window.location.href = "next.html";
     }
   }
   </script>
