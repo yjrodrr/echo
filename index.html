@@ -41,28 +41,25 @@
   </style>
 </head>
 <body>
-
-  <input type="text" id="code" placeholder="ㅤ" autocomplete="off" 
+  <input type="text" id="code" placeholder="ㅤ" autocomplete="off"
          oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-
   <button onclick="check()">?</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
   <script>
-  const CORRECT_HASH = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
+  const CORRECT_HASH = "3865e98e8d3fe3316c6b8cb24219bf0847bdd11b9f9b1940dda302111134c297";
 
   function check() {
     const entered = document.getElementById("code").value.trim();
     
     if (!entered) return;
-
+    
     const enteredHash = sha256(entered);
-
+    
     if (enteredHash === CORRECT_HASH) {
       window.location.href = "next.html";
     }
   }
   </script>
-
 </body>
 </html>
