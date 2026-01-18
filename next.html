@@ -15,8 +15,7 @@
       justify-content: center;
       align-items: center;
       gap: 25px;
-      position: relative; /* potrzebne do pozycjonowania podpisu */
-      overflow: hidden;
+      position: relative; /* potrzebne do fixed podpisu */
     }
     input {
       padding: 12px;
@@ -43,22 +42,18 @@
 
     /* Niewidoczny podpis w lewym dolnym rogu */
     .signature {
-      position: absolute;
+      position: fixed;
       bottom: 12px;
-      left: 18px;
+      left: 16px;
+      color: #000; /* dokładnie kolor tła – niewidoczny */
       font-size: 0.8rem;
-      color: #000; /* dokładnie kolor tła */
+      font-weight: normal;
       pointer-events: none;
       user-select: none;
-      opacity: 0.3;
-      transition: opacity 0.8s ease;
+      z-index: 10;
     }
-    .signature:hover {
-      opacity: 0.6;
-    }
-    .bold {
-      font-weight: 900;
-      color: #000; /* też kolor tła */
+    .signature span {
+      font-weight: bold;
     }
   </style>
 </head>
@@ -67,14 +62,14 @@
          oninput="this.value = this.value.replace(/[^0-9]/g, '')">
   <button onclick="check()">?</button>
 
-  <!-- Niewidoczny podpis -->
+  <!-- Podpis – zawsze na stronie, ale niewidoczny -->
   <div class="signature">
-    I still see you in <span class="bold">dreams</span>
+    I still see you in <span>dreams</span>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
   <script>
-  const CORRECT_HASH = "5c3a3f5e8e0a5c8e0d7b0e5f8e0a5c8e0d7b0e5f8e0a5c8e0d7b0e5f8e0a5c8e"; // sha256("dreams")
+  const CORRECT_HASH = "1f6f699c758927baadc825ad46bf7476d650b346a294b2bf9d457887b57f5153";
   function check() {
     const entered = document.getElementById("code").value.trim();
    
