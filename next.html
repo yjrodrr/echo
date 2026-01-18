@@ -1,123 +1,31 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Twoja strona</title>
-  <style>
-    :root {
-      --bg: #0d0d0d;
-      --text: #e0e0e0;
-      --accent: #4a00e0;   /* przykładowy kolor akcentu – zmień na swój */
-    }
+/* Dodaj do swojego istniejącego <style> lub pliku css */
 
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, sans-serif;
-      overflow-x: hidden;
-      position: relative;
-    }
+.dream-signature {
+  position: fixed;
+  bottom: 16px;
+  left: 20px;
+  font-size: 0.82rem;
+  letter-spacing: 0.4px;
+  opacity: 0.25;                    /* bardzo słabo widoczne */
+  color: var(--bg, #000000);        /* kolor identyczny z tłem strony */
+  pointer-events: none;             /* nie przeszkadza w klikaniu */
+  user-select: none;
+  z-index: 5;
+  font-family: inherit;             /* żeby pasowało do reszty strony */
+  transition: opacity 1.2s ease;
+}
 
-    /* Twój główny content */
-    .content {
-      padding: 4rem;
-      text-align: center;
-    }
+.dream-signature:hover {
+  opacity: 0.55;                    /* lekko widoczne po najechaniu */
+}
 
-    /* Napis w lewym dolnym rogu */
-    .dream-signature {
-      position: fixed;
-      bottom: 18px;
-      left: 24px;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-      opacity: 0.35;
-      user-select: none;
-      pointer-events: none;
-      color: var(--bg);                /* ten sam kolor co tło → niewidoczny */
-      transition: opacity 0.8s ease;
-      z-index: 5;
-    }
+.bold-dream {
+  font-weight: 900;
+  color: var(--bg, #000000);        /* też kolor tła */
+}
 
-    .dream-signature:hover {
-      opacity: 0.7;
-    }
-
-    .bold-dream {
-      font-weight: 900;
-      color: var(--bg);                /* też kolor tła */
-    }
-
-    /* === Hasło – zabezpieczenie jak w Twoim pierwszym kodzie === */
-    body[data-password="true"] .content {
-      display: none;
-    }
-
-    body[data-password="false"] .content {
-      display: block;
-    }
-
-    /* ewentualny overlay z hasłem (przykładowy) */
-    .password-screen {
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-    }
-
-    .password-screen.hidden {
-      display: none;
-    }
-  </style>
-</head>
-<body data-password="true">
-
-  <!-- Ekran z hasłem (jeśli używasz) -->
-  <div class="password-screen" id="pwdScreen">
-    <div>
-      <h2>Podaj hasło</h2>
-      <input type="password" id="pwdInput" placeholder="••••••">
-      <button onclick="checkPassword()">Wejdź</button>
-    </div>
-  </div>
-
-  <div class="content">
-    <h1>Witaj na stronie</h1>
-    <p>Treść widoczna dopiero po podaniu poprawnego hasła</p>
-  </div>
-
-  <!-- Napis w rogu (zawsze widoczny, ale „niewidoczny”) -->
-  <div class="dream-signature">
-    I still see you in <span class="bold-dream">dreams</span>
-  </div>
-
-  <script>
-    // Proste zabezpieczenie hasłem – zmień 'twoje_haslo' na swoje
-    function checkPassword() {
-      const input = document.getElementById('pwdInput').value.trim();
-      const correct = 'twoje_haslo'; // ← Zmień na swoje prawdziwe hasło
-
-      if (input === correct) {
-        document.body.dataset.password = 'false';
-        document.getElementById('pwdScreen').classList.add('hidden');
-      } else {
-        alert('Niepoprawne hasło');
-      }
-    }
-
-    // Możesz też od razu ukryć ekran jeśli ktoś już zna hasło (np. przez localStorage)
-    // if (localStorage.getItem('access_granted') === 'yes') {
-    //   document.body.dataset.password = 'false';
-    //   document.getElementById('pwdScreen').classList.add('hidden');
-    // }
-  </script>
-
-</body>
-</html>
+/* 
+   Jeśli nie używasz zmiennej --bg, możesz po prostu wpisać kolor tła ręcznie, np.:
+   color: #0a0a0a;
+   (dopasuj do rzeczywistego koloru tła swojej strony głównej)
+*/
