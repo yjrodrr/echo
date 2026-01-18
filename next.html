@@ -15,8 +15,9 @@
       justify-content: center;
       align-items: center;
       gap: 25px;
-      position: relative; /* potrzebne do fixed podpisu */
+      position: relative;
     }
+
     input {
       padding: 12px;
       font-size: 20px;
@@ -27,6 +28,7 @@
       border: 1px solid #444;
       border-radius: 6px;
     }
+
     button {
       padding: 12px 36px;
       font-size: 18px;
@@ -36,33 +38,43 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
     button:hover {
       background: #333;
     }
 
-    /* Niewidoczny podpis w lewym dolnym rogu */
+    /* Podpis – niby niewidoczny, ale da się zaznaczyć */
     .signature {
       position: fixed;
-      bottom: 12px;
-      left: 16px;
-      color: #000; /* dokładnie kolor tła – niewidoczny */
-      font-size: 0.8rem;
+      bottom: 14px;
+      left: 18px;
+      color: #000;                /* kolor tła */
+      font-size: 0.82rem;
       font-weight: normal;
-      pointer-events: none;
-      user-select: none;
+      pointer-events: auto;       /* ważne – pozwala na zaznaczanie */
+      user-select: text;          /* pozwala zaznaczać tekst */
       z-index: 10;
+      white-space: nowrap;
     }
+
     .signature span {
-      font-weight: bold;
+      font-weight: 900;
+    }
+
+    /* delikatne podświetlenie przy zaznaczeniu (opcjonalne) */
+    .signature::selection {
+      background: rgba(100, 100, 255, 0.25);
+      color: #ccc;
     }
   </style>
 </head>
 <body>
   <input type="text" id="code" placeholder="ㅤ" autocomplete="off"
-         oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+         oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')">
+
   <button onclick="check()">?</button>
 
-  <!-- Podpis – zawsze na stronie, ale niewidoczny -->
+  <!-- Tekst do zaznaczenia -->
   <div class="signature">
     I still see you in <span>dreams</span>
   </div>
@@ -70,13 +82,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
   <script>
   const CORRECT_HASH = "1f6f699c758927baadc825ad46bf7476d650b346a294b2bf9d457887b57f5153";
+
   function check() {
     const entered = document.getElementById("code").value.trim();
-   
+    
     if (!entered) return;
-   
+    
     const enteredHash = sha256(entered);
-   
+    
     if (enteredHash === CORRECT_HASH) {
       window.location.href = "next.html";
     }
