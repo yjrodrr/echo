@@ -16,6 +16,15 @@
       align-items: center;
       gap: 25px;
     }
+
+    .hint {
+      color: #fff;
+      font-size: 28px;
+      letter-spacing: 8px;
+      font-weight: 400;
+      user-select: none;
+    }
+
     input {
       padding: 12px;
       font-size: 20px;
@@ -26,6 +35,7 @@
       border: 1px solid #444;
       border-radius: 6px;
     }
+
     button {
       padding: 12px 36px;
       font-size: 18px;
@@ -35,31 +45,29 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
     button:hover {
       background: #333;
     }
   </style>
 </head>
 <body>
+  <div class="hint">1 14 7 5 12</div>
   <input type="text" id="code" placeholder="ㅤ" autocomplete="off"
          oninput="this.value = this.value.replace(/[^0-9]/g, '')">
   <button onclick="check()">?</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
   <script>
-  const CORRECT_HASH = "3865e98e8d3fe3316c6b8cb24219bf0847bdd11b9f9b1940dda302111134c297";
-
-  function check() {
-    const entered = document.getElementById("code").value.trim();
-    
-    if (!entered) return;
-    
-    const enteredHash = sha256(entered);
-    
-    if (enteredHash === CORRECT_HASH) {
-      window.location.href = "next.html";
+    const CORRECT_HASH = "1f6f699c758927baadc825ad46bf7476d650b346a294b2bf9d457887b57f5153"; // hash dla "dreams"
+    function check() {
+      const entered = document.getElementById("code").value.trim();
+      if (!entered) return;
+      const enteredHash = sha256(entered);
+      if (enteredHash === CORRECT_HASH) {
+        window.location.href = "next.html";
+      }
     }
-  }
   </script>
 </body>
 </html>
