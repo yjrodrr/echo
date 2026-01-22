@@ -17,23 +17,21 @@
 
     const hash = await computeSHA256(trimmed);
     if (hash === CORRECT_HASH) {
-      const nextPage = atob(encoded);
-      window.location.href = nextPage;
+      window.location.href = atob(encoded);
     }
   }
 
-  function handleKeydown(event) {
-    if (event.key === 'Enter') {
-      check();
-    }
+  function handleKeydown(e) {
+    if (e.key === 'Enter') check();
   }
 </script>
 
 <svelte:head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 </svelte:head>
 
-<div class="fullscreen">
+<div class="root">
   <input
     type="text"
     bind:value={code}
@@ -41,24 +39,30 @@
     autocomplete="off"
     on:keydown={handleKeydown}
   />
-
   <button on:click={check}>?</button>
 </div>
 
 <style>
+  :global(:root),
   :global(html),
   :global(body) {
     margin: 0 !important;
     padding: 0 !important;
-    height: 100% !important;
+    border: 0 !important;
     width: 100% !important;
+    height: 100% !important;
+    min-height: -webkit-fill-available !important;
     background: #000000 !important;
     color: #eeeeee;
     font-family: system-ui, sans-serif;
-    overflow: hidden;
+    overflow: hidden !important;
+    overscroll-behavior: none;
+    touch-action: manipulation;
   }
 
-  .fullscreen {
+  .root {
+    position: fixed;
+    inset: 0;
     width: 100vw;
     height: 100vh;
     margin: 0;
@@ -68,44 +72,46 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 35px;          /* trochę większy odstęp między elementami */
+    gap: 28px;
   }
 
   input {
-    padding: 16px 20px;     /* ↑ większe w środku */
-    font-size: 26px;        /* ↑ większa czcionka */
-    width: 280px;           /* ↑ szersze pole */
+    padding: 14px 24px;
+    font-size: 22px;
+    width: 260px;
     text-align: center;
-    background: #111111;
-    color: #eeeeee;
-    border: 2px solid #444444;
-    border-radius: 10px;
+    background: #0f0f0f;
+    color: #e0e0e0;
+    border: 1px solid #333;
+    border-radius: 8px;
     outline: none;
   }
 
   input:focus {
-    border-color: #777777;
-    box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.4);
+    border-color: #555;
   }
 
   button {
-    padding: 16px 60px;     /* ↑ wyraźnie większe */
-    font-size: 24px;        /* ↑ większa czcionka */
-    background: #222222;
-    color: #eeeeee;
-    border: 2px solid #555555;
-    border-radius: 10px;
+    padding: 14px 52px;
+    font-size: 20px;
+    background: #1a1a1a;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.15s ease;
   }
 
   button:hover {
-    background: #333333;
-    transform: translateY(-1px);
+    background: #2a2a2a;
   }
 
   button:active {
-    background: #444444;
-    transform: translateY(1px);
+    background: #3a3a3a;
+  }
+
+  /* Usuwanie pasków przewijania i ramek przeglądarki */
+  :global(body::-webkit-scrollbar),
+  :global(*)::-webkit-scrollbar {
+    display: none;
   }
 </style>
