@@ -1,66 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: #000;
-      color: #eee;
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 25px;
-    }
-    input {
-      padding: 12px;
-      font-size: 20px;
-      width: 220px;
-      text-align: center;
-      background: #111;
-      color: #eee;
-      border: 1px solid #444;
-      border-radius: 6px;
-    }
-    button {
-      padding: 12px 36px;
-      font-size: 18px;
-      background: #222;
-      color: #eee;
-      border: 1px solid #555;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #333;
-    }
-  </style>
-</head>
-<body>
-  <input type="text" id="code" placeholder="ㅤ" autocomplete="off">
-  <button onclick="check()">?</button>
+<script>
+  let code = '';
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
-  <script>
-  const CORRECT_HASH = "3865e98e8d3fe3316c6b8cb24219bf0847bdd11b9f9b1940dda302111134c297";
+  const CORRECT_HASH = '3865e98e8d3fe3316c6b8cb24219bf0847bdd11b9f9b1940dda302111134c297';
+  const encoded = 'amZkaWplLmh0bWw=';
 
-  const encoded = "amZkaWplLmh0bWw=";
+  async function computeHash(input) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(input);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+  }
 
-  function check() {
-    const entered = document.getElementById("code").value.trim();
-    if (!entered) return;
-
-    const hash = sha256(entered);
-
+  async function check() {
+    if (!code) return;
+    const hash = await computeHash(code.trim());
     if (hash === CORRECT_HASH) {
       const url = atob(encoded);
       window.location.href = url;
     }
   }
-  </script>
-</body>
-</html>
+</script>
+
+<svelte:head>
+  <meta charset="UTF-8" />
+  <title></title>
+</svelte:head>
+
+<main>
+  <input
+    type="text"
+    bind:value={code}
+    placeholder="ㅤ"
+    autocomplete="off"
+  />
+
+  <button on:click={check}>?</button>
+</main>
+
+<style>
+  :global(body) {
+    margin: 0;
+    height: 100vh;
+    background: #000;
+    color: #eee;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+  }
+
+  input {
+    padding: 12px;
+    font-size: 20px;
+    width: 220px;
+    text-align: center;
+    background: #111;
+    color: #eee;
+    border: 1px solid #444;
+    border-radius: 6px;
+  }
+
+  button {
+    padding: 12px 36px;
+    font-size: 18px;
+    background: #222;
+    color: #eee;
+    border: 1px solid #555;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #333;
+  }
+</style>
