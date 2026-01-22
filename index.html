@@ -1,85 +1,48 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
   <style>
-    * {
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
+      height: 100vh;
       background: #000;
       color: #eee;
-      font-family: system-ui, sans-serif;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .container {
+      font-family: sans-serif;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 28px;
+      gap: 25px;
     }
-
     input {
-      padding: 14px 24px;
-      font-size: 22px;
-      width: 260px;
-      text-align: center;
-      background: #0f0f0f;
-      color: #e0e0e0;
-      border: 1px solid #333;
-      border-radius: 8px;
-      outline: none;
-    }
-
-    input:focus {
-      border-color: #555;
-    }
-
-    button {
-      padding: 14px 52px;
+      padding: 12px;
       font-size: 20px;
-      background: #1a1a1a;
-      color: #e0e0e0;
+      width: 220px;
+      text-align: center;
+      background: #111;
+      color: #eee;
       border: 1px solid #444;
-      border-radius: 8px;
+      border-radius: 6px;
+    }
+    button {
+      padding: 12px 36px;
+      font-size: 18px;
+      background: #222;
+      color: #eee;
+      border: 1px solid #555;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.15s;
     }
-
     button:hover {
-      background: #2a2a2a;
-    }
-
-    button:active {
-      background: #3a3a3a;
-    }
-    body::-webkit-scrollbar {
-      display: none;
+      background: #333;
     }
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <input 
-      type="text" 
-      id="code" 
-      placeholder="ㅤ" 
-      autocomplete="off"
-    >
-    <button onclick="check()">?</button>
-  </div>
+  <input type="text" id="code" placeholder="ㅤ" autocomplete="off">
+  <button onclick="check()">?</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
   <script>
@@ -87,24 +50,14 @@
     const encoded = "amZkaWplLmh0bWw=";
 
     function check() {
-      const input = document.getElementById("code");
-      const entered = input.value.trim();
-
+      const entered = document.getElementById("code").value.trim();
       if (!entered) return;
-
       const hash = sha256(entered);
-
       if (hash === CORRECT_HASH) {
         const url = atob(encoded);
         window.location.href = url;
       }
     }
-    document.getElementById("code").addEventListener("keydown", function(e) {
-      if (e.key === "Enter") {
-        check();
-      }
-    });
   </script>
-
 </body>
 </html>
