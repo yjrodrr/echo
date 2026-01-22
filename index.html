@@ -2,7 +2,7 @@
   let code = '';
 
   const CORRECT_HASH = '3865e98e8d3fe3316c6b8cb24219bf0847bdd11b9f9b1940dda302111134c297';
-  const encoded = 'amZkaWplLmh0bWw='; // → fjdije.html
+  const encoded = 'amZkaWplLmh0bWw=';
 
   async function computeSHA256(input) {
     const msgBuffer = new TextEncoder().encode(input);
@@ -20,7 +20,6 @@
       const nextPage = atob(encoded);
       window.location.href = nextPage;
     }
-    // → brak alertu, brak czyszczenia pola – po prostu nic się nie dzieje przy złym kodzie
   }
 
   function handleKeydown(event) {
@@ -32,10 +31,9 @@
 
 <svelte:head>
   <meta charset="UTF-8" />
-  <!-- ewentualnie <title>Tajny kod</title> -->
 </svelte:head>
 
-<div class="fullscreen-center">
+<div class="fullscreen">
   <input
     type="text"
     bind:value={code}
@@ -53,56 +51,61 @@
     margin: 0 !important;
     padding: 0 !important;
     height: 100% !important;
-    min-height: 100vh !important;
-    background: #000 !important;
-    color: #eee !important;
-    font-family: system-ui, -apple-system, sans-serif;
+    width: 100% !important;
+    background: #000000 !important;
+    color: #eeeeee;
+    font-family: system-ui, sans-serif;
     overflow: hidden;
   }
 
-  .fullscreen-center {
-    width: 100%;
-    min-height: 100vh;
+  .fullscreen {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #000000;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 25px;
-    background: #000;
+    gap: 35px;          /* trochę większy odstęp między elementami */
   }
 
   input {
-    padding: 12px;
-    font-size: 20px;
-    width: 220px;
+    padding: 16px 20px;     /* ↑ większe w środku */
+    font-size: 26px;        /* ↑ większa czcionka */
+    width: 280px;           /* ↑ szersze pole */
     text-align: center;
-    background: #111;
-    color: #eee;
-    border: 1px solid #444;
-    border-radius: 6px;
+    background: #111111;
+    color: #eeeeee;
+    border: 2px solid #444444;
+    border-radius: 10px;
     outline: none;
   }
 
   input:focus {
-    border-color: #777;
+    border-color: #777777;
+    box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.4);
   }
 
   button {
-    padding: 12px 36px;
-    font-size: 18px;
-    background: #222;
-    color: #eee;
-    border: 1px solid #555;
-    border-radius: 6px;
+    padding: 16px 60px;     /* ↑ wyraźnie większe */
+    font-size: 24px;        /* ↑ większa czcionka */
+    background: #222222;
+    color: #eeeeee;
+    border: 2px solid #555555;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.12s;
+    transition: all 0.15s ease;
   }
 
   button:hover {
-    background: #333;
+    background: #333333;
+    transform: translateY(-1px);
   }
 
   button:active {
-    background: #444;
+    background: #444444;
+    transform: translateY(1px);
   }
 </style>
