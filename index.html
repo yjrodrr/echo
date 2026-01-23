@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Windows 11 Desktop – Minimal</title>
+  <title></title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * {
@@ -11,7 +11,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     html, body {
       height: 100%;
       font-family: "Segoe UI", system-ui, sans-serif;
@@ -19,17 +18,14 @@
       overflow: hidden;
       background: #000;
     }
-
     .desktop {
       height: 100vh;
       background: url('https://images.alphacoders.com/135/thumb-1920-135669.jpg') center/cover no-repeat;
       position: relative;
     }
-
     .desktop-icons {
       padding: 16px 20px;
     }
-
     .icon {
       width: 74px;
       text-align: center;
@@ -49,7 +45,6 @@
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
       margin-bottom: 6px;
     }
-
     .icon span {
       display: block;
       font-size: 12px;
@@ -58,14 +53,13 @@
       text-shadow: 0 1px 2px #000;
       padding: 2px 6px;
     }
-
     .taskbar {
       position: absolute;
       bottom: 12px;
       left: 50%;
       transform: translateX(-50%);
       height: 52px;
-      min-width: 380px;
+      min-width: 360px;
       max-width: 92%;
       background: rgba(30, 30, 46, 0.68);
       backdrop-filter: blur(20px) saturate(180%);
@@ -75,10 +69,9 @@
       box-shadow: 0 8px 32px rgba(0,0,0,0.5);
       display: flex;
       align-items: center;
-      padding: 0 48px 0 24px;     /* ← więcej miejsca po lewej, mniej po prawej */
-      gap: 24px;
+      padding: 0 32px;
+      gap: 16px;
     }
-
     .taskbar-item {
       width: 40px;
       height: 40px;
@@ -88,22 +81,18 @@
       justify-content: center;
       transition: all 0.15s;
     }
-
     .taskbar-item:hover {
       background: rgba(255,255,255,0.12);
       transform: scale(1.12);
     }
-
     .search-btn i {
       font-size: 22px;
       color: white;
       filter: drop-shadow(0 1px 2px #000);
     }
-
     .spacer {
       flex: 1 1 auto;
     }
-
     .clock {
       font-size: 15px;
       font-weight: 500;
@@ -115,9 +104,7 @@
   </style>
 </head>
 <body>
-
 <div class="desktop">
-
   <div class="desktop-icons">
     <div class="icon">
       <img src="https://img.icons8.com/fluency/96/recycle-bin.png" alt="Recycle Bin">
