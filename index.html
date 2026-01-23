@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pulpit Windows 11 – fake</title>
+  <title>Windows 11 Desktop – Clean</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * {
@@ -23,24 +23,15 @@
     .desktop {
       height: 100vh;
       background: url('https://images.alphacoders.com/135/thumb-1920-135669.jpg') center/cover no-repeat;
-      /* alternatywy:
-         https://4kwallpapers.com/images/wallpapers/windows-11-stock-orange-abstract-dark-background-8960x6000-8960.jpg
-         https://pics.alphacoders.com/568/568571.jpg
-      */
       position: relative;
-      display: flex;
-      flex-direction: column;
     }
 
-    /* Ikony na pulpicie – lewa strona */
+    /* Only two desktop icons – left side */
     .desktop-icons {
       padding: 16px 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 82px);
-      grid-auto-rows: 90px;
-      gap: 12px 8px;
-      align-content: start;
-      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .icon {
@@ -59,7 +50,7 @@
       width: 48px;
       height: 48px;
       object-fit: contain;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.7));
       margin-bottom: 6px;
     }
 
@@ -72,21 +63,16 @@
       padding: 2px 6px;
       border-radius: 4px;
       text-shadow: 0 1px 2px #000;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
 
-    /* Taskbar – Windows 11 styl */
+    /* Taskbar – Windows 11 style – almost empty */
     .taskbar {
       position: absolute;
       bottom: 12px;
       left: 50%;
       transform: translateX(-50%);
       height: 52px;
-      min-width: 480px;
-      max-width: 92%;
+      min-width: 360px;
       background: rgba(30, 30, 46, 0.68);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -97,7 +83,6 @@
       align-items: center;
       padding: 0 16px;
       gap: 8px;
-      font-size: 0;
     }
 
     .taskbar-item {
@@ -108,49 +93,17 @@
       align-items: center;
       justify-content: center;
       transition: all 0.15s;
-      position: relative;
     }
 
     .taskbar-item:hover {
       background: rgba(255,255,255,0.12);
-      transform: scale(1.12);
     }
 
-    .taskbar-item.active {
-      background: rgba(255,255,255,0.18) !important;
-    }
-
-    .taskbar-item.active::after {
-      content: "";
-      position: absolute;
-      bottom: 4px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 6px;
-      height: 6px;
-      background: white;
-      border-radius: 50%;
-    }
-
-    .taskbar-item img,
-    .taskbar-item i {
-      width: 24px;
-      height: 24px;
-      font-size: 24px;
-      color: white;
-      filter: drop-shadow(0 1px 2px #000);
-    }
-
-    .start-btn {
+    .start-btn i {
       font-size: 26px;
-      color: white;
     }
 
-    .search-btn {
-      font-size: 22px;
-    }
-
-    .widgets-btn {
+    .search-btn i {
       font-size: 22px;
     }
 
@@ -161,7 +114,7 @@
     .system-tray {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-size: 13px;
       color: rgba(255,255,255,0.9);
     }
@@ -169,104 +122,43 @@
     .tray-icon {
       width: 20px;
       height: 20px;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     .clock {
       min-width: 54px;
       text-align: right;
     }
-
-    /* Symulacja okienka (opcjonalne – możesz odkomentować) */
-    /*
-    .window {
-      position: absolute;
-      top: 80px;
-      left: 300px;
-      width: 720px;
-      height: 480px;
-      background: rgba(40,40,50,0.92);
-      backdrop-filter: blur(16px);
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-      overflow: hidden;
-    }
-    .titlebar {
-      height: 36px;
-      background: rgba(30,30,40,0.9);
-      display: flex;
-      align-items: center;
-      padding: 0 12px;
-      gap: 8px;
-    }
-    .titlebar-btn {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-    .red   { background: #ff5f57; }
-    .yellow{ background: #febc2e; }
-    .green { background: #28c840; }
-    */
   </style>
 </head>
 <body>
 
 <div class="desktop">
 
-  <!-- Ikony pulpitu -->
+  <!-- Only two icons on desktop -->
   <div class="desktop-icons">
     <div class="icon">
-      <img src="https://img.icons8.com/fluency/96/this-pc.png" alt="Ten komputer">
-      <span>Ten komputer</span>
+      <img src="https://img.icons8.com/fluency/96/this-pc.png" alt="This PC">
+      <span>This PC</span>
     </div>
+
     <div class="icon">
-      <img src="https://img.icons8.com/fluency/96/recycle-bin.png" alt="Kosz">
-      <span>Kosz</span>
-    </div>
-    <div class="icon">
-      <img src="https://img.icons8.com/fluency/96/microsoft-edge.png" alt="Edge">
-      <span>Microsoft Edge</span>
-    </div>
-    <div class="icon">
-      <img src="https://img.icons8.com/fluency/96/folder-invoices.png" alt="Dokumenty">
-      <span>Dokumenty</span>
-    </div>
-    <div class="icon">
-      <img src="https://img.icons8.com/fluency/96/google-drive.png" alt="Dysk Google">
-      <span>Dysk Google</span>
-    </div>
-    <div class="icon">
-      <img src="https://img.icons8.com/fluency/96/steam.png" alt="Steam">
-      <span>Steam</span>
-    </div>
-    <div class="icon">
-      <img src="https://img.icons8.com/fluency/96/visual-studio-code-2019.png" alt="VS Code">
-      <span>Visual Studio Code</span>
+      <img src="https://img.icons8.com/fluency/96/recycle-bin.png" alt="Recycle Bin">
+      <span>Recycle Bin</span>
     </div>
   </div>
 
-  <!-- Taskbar -->
+  <!-- Very clean taskbar – only Start, Search and system tray -->
   <div class="taskbar">
-    <div class="taskbar-item widgets-btn"><i class="fa-solid fa-square"></i></div>
-    <div class="taskbar-item start-btn"><i class="fa-brands fa-windows"></i></div>
     <div class="taskbar-item search-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+    <div class="taskbar-item start-btn"><i class="fa-brands fa-windows"></i></div>
 
     <div class="spacer"></div>
 
-    <!-- Aktywne / przypięte programy -->
-    <div class="taskbar-item active"><img src="https://img.icons8.com/fluency/96/microsoft-edge.png" alt="Edge"></div>
-    <div class="taskbar-item"><img src="https://img.icons8.com/fluency/96/visual-studio-code-2019.png" alt="VS Code"></div>
-    <div class="taskbar-item"><img src="https://img.icons8.com/fluency/96/spotify.png" alt="Spotify"></div>
-    <div class="taskbar-item"><img src="https://img.icons8.com/fluency/96/file-explorer.png" alt="Eksplorator"></div>
-
-    <div class="spacer"></div>
-
-    <!-- Tray -->
+    <!-- System tray only -->
     <div class="system-tray">
-      <img class="tray-icon" src="https://img.icons8.com/fluency/96/wi-fi-connected.png" alt="WiFi">
-      <img class="tray-icon" src="https://img.icons8.com/fluency/96/battery-level-80.png" alt="Bateria">
+      <img class="tray-icon" src="https://img.icons8.com/fluency/96/wi-fi-connected.png" alt="Wi-Fi">
+      <img class="tray-icon" src="https://img.icons8.com/fluency/96/battery-level-80.png" alt="Battery">
       <div class="clock">17:42</div>
     </div>
   </div>
@@ -274,12 +166,14 @@
 </div>
 
 <script>
-  // Symulacja aktualnej godziny
-  setInterval(() => {
+  // Live clock
+  function updateClock() {
     const now = new Date();
-    const time = now.toLocaleTimeString('pl-PL', {hour:'2-digit', minute:'2-digit'});
+    const time = now.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
     document.querySelector('.clock').textContent = time;
-  }, 1000);
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
 </script>
 
 </body>
