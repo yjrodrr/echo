@@ -65,7 +65,7 @@
       left: 50%;
       transform: translateX(-50%);
       height: 52px;
-      min-width: 360px;           /* trochę szerszy, żeby było miejsce na przesunięcia */
+      min-width: 380px;
       max-width: 92%;
       background: rgba(30, 30, 46, 0.68);
       backdrop-filter: blur(20px) saturate(180%);
@@ -75,8 +75,8 @@
       box-shadow: 0 8px 32px rgba(0,0,0,0.5);
       display: flex;
       align-items: center;
-      padding: 0 32px;            /* większe marginesy boczne */
-      gap: 16px;
+      padding: 0 48px 0 24px;     /* ← więcej miejsca po lewej, mniej po prawej */
+      gap: 24px;
     }
 
     .taskbar-item {
@@ -101,7 +101,7 @@
     }
 
     .spacer {
-      flex: 1 1 auto;             /* mocno rozciąga środek */
+      flex: 1 1 auto;
     }
 
     .clock {
