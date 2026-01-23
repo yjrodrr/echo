@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Windows 11 Desktop – Clean</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title></title>
   <style>
     * {
       margin: 0;
@@ -14,24 +13,18 @@
 
     html, body {
       height: 100%;
-      font-family: "Segoe UI", system-ui, sans-serif;
-      color: white;
       overflow: hidden;
       background: #000;
+      font-family: "Segoe UI", system-ui, sans-serif;
     }
 
     .desktop {
       height: 100vh;
-      background: url('https://images.alphacoders.com/135/thumb-1920-135669.jpg') center/cover no-repeat;
+      background: url('https://images.alphacoders.com/135/thumb-1920-135669.jpg') center / cover no-repeat;
       position: relative;
     }
-
-    /* Only two desktop icons – left side */
     .desktop-icons {
       padding: 16px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
     }
 
     .icon {
@@ -39,18 +32,18 @@
       text-align: center;
       cursor: default;
       user-select: none;
-      transition: transform 0.1s;
+      transition: transform 0.12s;
     }
 
     .icon:hover {
-      transform: scale(1.08);
+      transform: scale(1.1);
     }
 
     .icon img {
       width: 48px;
       height: 48px;
       object-fit: contain;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.7));
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.75));
       margin-bottom: 6px;
     }
 
@@ -58,120 +51,67 @@
       display: block;
       font-size: 12px;
       line-height: 1.3;
-      background: rgba(30,30,30,0.65);
+      background: rgba(25,25,25,0.7);
       backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       padding: 2px 6px;
       border-radius: 4px;
-      text-shadow: 0 1px 2px #000;
+      text-shadow: 0 1px 3px #000;
     }
-
-    /* Taskbar – Windows 11 style – almost empty */
     .taskbar {
       position: absolute;
-      bottom: 12px;
+      bottom: 14px;
       left: 50%;
       transform: translateX(-50%);
-      height: 52px;
-      min-width: 360px;
-      background: rgba(30, 30, 46, 0.68);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      gap: 8px;
-    }
-
-    .taskbar-item {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
+      height: 44px;
+      padding: 0 20px;
+      background: rgba(20, 20, 35, 0.65);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.55);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s;
-    }
-
-    .taskbar-item:hover {
-      background: rgba(255,255,255,0.12);
-    }
-
-    .start-btn i {
-      font-size: 26px;
-    }
-
-    .search-btn i {
-      font-size: 22px;
-    }
-
-    .spacer {
-      flex: 1;
-    }
-
-    .system-tray {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .tray-icon {
-      width: 20px;
-      height: 20px;
-      opacity: 0.9;
+      min-width: 110px;
+      pointer-events: none;
     }
 
     .clock {
-      min-width: 54px;
-      text-align: right;
+      font-size: 15px;
+      font-weight: 420;
+      color: rgba(255,255,255,0.94);
+      letter-spacing: 0.4px;
     }
   </style>
 </head>
 <body>
 
 <div class="desktop">
-
-  <!-- Only two icons on desktop -->
   <div class="desktop-icons">
-    <div class="icon">
-      <img src="https://img.icons8.com/fluency/96/this-pc.png" alt="This PC">
-      <span>This PC</span>
-    </div>
-
     <div class="icon">
       <img src="https://img.icons8.com/fluency/96/recycle-bin.png" alt="Recycle Bin">
       <span>Recycle Bin</span>
     </div>
   </div>
 
-  <!-- Very clean taskbar – only Start, Search and system tray -->
   <div class="taskbar">
-    <div class="taskbar-item search-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
-    <div class="taskbar-item start-btn"><i class="fa-brands fa-windows"></i></div>
-
-    <div class="spacer"></div>
-
-    <!-- System tray only -->
-    <div class="system-tray">
-      <img class="tray-icon" src="https://img.icons8.com/fluency/96/wi-fi-connected.png" alt="Wi-Fi">
-      <img class="tray-icon" src="https://img.icons8.com/fluency/96/battery-level-80.png" alt="Battery">
-      <div class="clock">17:42</div>
-    </div>
+    <div class="clock">17:42</div>
   </div>
 
 </div>
 
 <script>
-  // Live clock
   function updateClock() {
     const now = new Date();
-    const time = now.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
+    const time = now.toLocaleTimeString('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
     document.querySelector('.clock').textContent = time;
   }
+
   updateClock();
   setInterval(updateClock, 1000);
 </script>
