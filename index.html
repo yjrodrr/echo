@@ -24,11 +24,9 @@
       height: 100vh;
       background: url('https://images.alphacoders.com/135/thumb-1920-135669.jpg') center/cover no-repeat;
       position: relative;
-      display: flex;
-      flex-direction: column;
     }
 
-    /* Jedna ikona – Recycle Bin, biały tekst bez tła */
+    /* Recycle Bin – biały tekst */
     .desktop-icons {
       padding: 16px 20px;
     }
@@ -66,14 +64,14 @@
       white-space: nowrap;
     }
 
-    /* Taskbar – dokładnie ten sam kształt i styl co w Twoim kodzie */
+    /* Taskbar – lekko szerszy */
     .taskbar {
       position: absolute;
       bottom: 12px;
       left: 50%;
       transform: translateX(-50%);
       height: 52px;
-      min-width: 220px;          /* zmniejszone, bo tylko 2 elementy */
+      min-width: 320px;
       max-width: 92%;
       background: rgba(30, 30, 46, 0.68);
       backdrop-filter: blur(20px) saturate(180%);
@@ -83,8 +81,8 @@
       box-shadow: 0 8px 32px rgba(0,0,0,0.5);
       display: flex;
       align-items: center;
-      padding: 0 16px;
-      gap: 8px;
+      padding: 0 28px;
+      gap: 16px;
     }
 
     .taskbar-item {
@@ -113,10 +111,12 @@
     }
 
     .clock {
-      font-size: 13px;
-      color: rgba(255,255,255,0.9);
-      min-width: 54px;
+      font-size: 15px;              /* ← lekko powiększony rozmiar */
+      font-weight: 500;             /* minimalnie grubsza czcionka */
+      color: rgba(255,255,255,0.96);
+      min-width: 60px;
       text-align: right;
+      letter-spacing: 0.3px;
     }
   </style>
 </head>
@@ -132,7 +132,7 @@
     </div>
   </div>
 
-  <!-- Taskbar – ten sam kształt co w podanym kodzie, ale tylko lupa + godzina -->
+  <!-- Taskbar -->
   <div class="taskbar">
     <div class="taskbar-item search-btn">
       <i class="fa-solid fa-magnifying-glass"></i>
@@ -146,7 +146,6 @@
 </div>
 
 <script>
-  // Aktualny czas (format 24h)
   setInterval(() => {
     const now = new Date();
     const time = now.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
