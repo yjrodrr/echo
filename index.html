@@ -185,33 +185,4 @@
   const HASLO = "6222";
   const input = document.getElementById("pass");
   const login = document.getElementById("login");
-  const desktop = document.getElementById("desktop");
-
-  input.addEventListener("keypress", e => {
-    if (e.key === "Enter") {
-      if (input.value === HASLO) {
-        login.style.display = "none";
-        desktop.style.display = "block";
-        document.body.classList.add("logged-in");
-        startClock();
-        input.value = "";
-      } else {
-        input.value = "";
-        input.focus();
-        // brak żadnego komunikatu o błędzie
-      }
-    }
-  });
-
-  function startClock() {
-    const update = () => {
-      const d = new Date();
-      document.getElementById("clock").textContent =
-        d.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' });
-    };
-    update();
-    setInterval(update, 1000);
-  }
-</script>
-</body>
-</html>
+  const desktop = document
