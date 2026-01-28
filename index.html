@@ -14,6 +14,8 @@
     body {
       height: 100vh;
       background: #000;
+      color: #ddd;
+      font-family: system-ui, -apple-system, sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -25,11 +27,11 @@
     }
 
     .avatar {
-      width: 96px;
-      height: 96px;
+      width: 88px;
+      height: 88px;
       margin-bottom: 48px;
-      opacity: 0.7;
-      transition: opacity 0.4s;
+      opacity: 0.8;
+      transition: opacity 0.3s;
     }
 
     .avatar:hover {
@@ -37,23 +39,24 @@
     }
 
     input[type="password"] {
-      width: 240px;
-      padding: 16px 0;
-      font-size: 24px;
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid rgba(180,180,180,0.25);
-      color: #eee;
+      width: 280px;
+      padding: 16px 24px;
+      font-size: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      color: white;
       text-align: center;
-      letter-spacing: 12px;
+      letter-spacing: 8px;
       font-family: monospace;
       outline: none;
-      transition: all 0.3s;
+      transition: all 0.25s;
     }
 
     input[type="password"]:focus {
-      border-bottom-color: rgba(180,180,180,0.7);
-      letter-spacing: 14px;
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(200,200,255,0.3);
+      box-shadow: 0 0 0 3px rgba(100,140,255,0.15);
     }
 
     input::placeholder {
@@ -61,11 +64,10 @@
     }
 
     .error {
-      color: #ff4444;
+      color: #ff5555;
       font-size: 14px;
       margin-top: 16px;
-      min-height: 1.3em;
-      opacity: 0.9;
+      min-height: 1.4em;
     }
 
     /* pulpit */
@@ -78,20 +80,21 @@
 
     .taskbar {
       position: absolute;
-      bottom: 16px;
+      bottom: 12px;
       left: 50%;
       transform: translateX(-50%);
-      height: 54px;
-      min-width: 380px;
-      max-width: 90%;
-      background: rgba(25,25,40,0.72);
-      backdrop-filter: blur(24px);
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.06);
+      height: 52px;
+      min-width: 360px;
+      max-width: 92%;
+      background: rgba(30,30,46,0.68);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
-      padding: 0 36px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.55);
+      padding: 0 32px;
+      gap: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     }
 
     .spacer { flex: 1; }
@@ -99,8 +102,8 @@
     .clock {
       font-size: 15px;
       font-weight: 500;
-      color: rgba(255,255,255,0.97);
-      min-width: 64px;
+      color: rgba(255,255,255,0.96);
+      min-width: 60px;
       text-align: right;
     }
   </style>
@@ -108,30 +111,30 @@
 <body>
 
 <div class="login-container">
-  <!-- ikona -->
+  <!-- ikona kamery / użytkownika -->
   <div class="avatar">
-    <svg viewBox="0 0 100 100" fill="none" stroke="#ccc" stroke-width="2.2">
-      <circle cx="50" cy="34" r="18" />
-      <path d="M50 52 
-               C 26 52, 16 69, 16 85
-               L 84 85
-               C 84 69, 74 52, 50 52 Z" />
-      <rect x="28" y="87" width="44" height="10" rx="3" />
-      <circle cx="38" cy="92" r="2.5" fill="#ccc" />
-      <circle cx="50" cy="92" r="2.5" fill="#ccc" />
-      <circle cx="62" cy="92" r="2.5" fill="#ccc" />
+    <svg viewBox="0 0 100 100" fill="none" stroke="#aaa" stroke-width="2">
+      <circle cx="50" cy="35" r="18" />
+      <path d="M50 53 
+               C 28 53, 18 70, 18 85
+               L 82 85
+               C 82 70, 72 53, 50 53 Z" />
+      <rect x="30" y="88" width="40" height="8" rx="2" />
+      <circle cx="38" cy="92" r="2" fill="#aaa" />
+      <circle cx="50" cy="92" r="2" fill="#aaa" />
+      <circle cx="62" cy="92" r="2" fill="#aaa" />
     </svg>
   </div>
 
   <input 
     type="password" 
-    id="p" 
+    id="pass" 
     autocomplete="off" 
     autofocus 
     maxlength="4"
   >
 
-  <div class="error" id="e"></div>
+  <div class="error" id="msg"></div>
 </div>
 
 <div id="desktop">
@@ -143,11 +146,12 @@
 
 <script>
   const HASLO = "6222";
-  const input = document.getElementById("p");
-  const err   = document.getElementById("e");
+
+  const input = document.getElementById("pass");
+  const msg   = document.getElementById("msg");
 
   input.addEventListener("input", () => {
-    err.textContent = "";
+    msg.textContent = "";
   });
 
   input.addEventListener("keypress", e => {
@@ -158,7 +162,7 @@
         document.getElementById("desktop").style.display = "block";
         startClock();
       } else {
-        err.textContent = "błędne hasło";
+        msg.textContent = "błędne hasło";
         input.value = "";
         input.focus();
       }
@@ -173,7 +177,6 @@
     }, 1000);
   }
 
-  // opcjonalnie – fokus od razu po załadowaniu
   window.addEventListener("load", () => input.focus());
 </script>
 
