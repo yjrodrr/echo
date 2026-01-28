@@ -36,46 +36,48 @@
     }
 
     .avatar {
-      width: 104px;
-      height: 104px;
-      margin: 0 auto 32px;
+      width: 140px;          /* ← powiększony */
+      height: 140px;
+      margin: 0 auto 48px;   /* ← trochę więcej odstępu pod spodem */
     }
 
     .avatar svg {
       width: 100%;
       height: 100%;
-      opacity: 0.75;
+      opacity: 0.8;          /* delikatnie jaśniejszy, żeby lepiej widać */
+      stroke: #ccc;          /* ← zmieniony kolor na jaśniejszy szary */
+      stroke-width: 3;
     }
 
     .login-box {
-      width: 260px;
+      width: 280px;          /* lekko poszerzony, żeby lepiej wyglądało z większym avatarem */
       margin: 0 auto;
     }
 
     input[type="password"] {
       width: 100%;
-      padding: 14px 20px;
-      font-size: 18px;
+      padding: 16px 24px;
+      font-size: 20px;
       background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
       color: white;
       text-align: center;
-      letter-spacing: 6px;
+      letter-spacing: 8px;
       font-family: monospace;
     }
 
     input[type="password"]:focus {
       outline: none;
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.25);
-      box-shadow: 0 0 0 3px rgba(100,180,255,0.15);
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.30);
+      box-shadow: 0 0 0 4px rgba(100,180,255,0.20);
     }
 
     .error {
       color: #ff4d4d;
-      font-size: 14px;
-      margin-top: 12px;
+      font-size: 15px;
+      margin-top: 16px;
       min-height: 1.4em;
     }
 
@@ -84,76 +86,76 @@
       display: none;
       height: 100vh;
       width: 100vw;
-      background: url('https://images.alphacoders.com/135/thumb-1920-135669.jpg') center/cover no-repeat;
+      background: #000;               /* ← po prostu czarne */
       position: relative;
     }
 
     .desktop-icons {
-      padding: 16px 20px;
+      padding: 24px 32px;
       display: flex;
       flex-wrap: wrap;
-      gap: 24px;
+      gap: 32px;
     }
 
     .icon {
-      width: 74px;
+      width: 80px;
       text-align: center;
       user-select: none;
-      transition: transform 0.1s;
+      transition: transform 0.12s;
       cursor: pointer;
     }
 
     .icon:hover {
-      transform: scale(1.08);
+      transform: scale(1.10);
     }
 
     .icon img {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 6px;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+      width: 56px;
+      height: 56px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.7));
     }
 
     .icon span {
-      font-size: 12px;
-      text-shadow: 0 1px 2px #000;
+      font-size: 13px;
+      text-shadow: 0 1px 3px #000;
       display: block;
     }
 
     .taskbar {
       position: absolute;
-      bottom: 12px;
+      bottom: 16px;
       left: 50%;
       transform: translateX(-50%);
-      height: 52px;
-      min-width: 360px;
+      height: 56px;
+      min-width: 380px;
       max-width: 92%;
-      background: rgba(30, 30, 46, 0.68);
-      backdrop-filter: blur(20px) saturate(180%);
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      background: rgba(30, 30, 46, 0.75);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
       display: flex;
       align-items: center;
-      padding: 0 32px;
-      gap: 16px;
+      padding: 0 36px;
+      gap: 20px;
     }
 
     .taskbar-item {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
     }
 
     .taskbar-item:hover {
-      background: rgba(255,255,255,0.12);
-      transform: scale(1.12);
+      background: rgba(255,255,255,0.14);
+      transform: scale(1.14);
     }
 
     .spacer {
@@ -161,8 +163,8 @@
     }
 
     .clock {
-      font-size: 15px;
-      min-width: 60px;
+      font-size: 16px;
+      min-width: 64px;
       text-align: right;
     }
   </style>
@@ -172,9 +174,9 @@
 <!-- LOGIN -->
 <div class="login-container" id="login">
   <div class="avatar">
-    <svg viewBox="0 0 100 100" fill="none" stroke="#aaa" stroke-width="2.5">
-      <circle cx="50" cy="35" r="20" />
-      <path d="M25 85 Q 50 60, 75 85" />
+    <svg viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="38" r="22" />
+      <path d="M22 85 Q 50 58, 78 85" />
     </svg>
   </div>
   <div class="login-box">
@@ -196,9 +198,9 @@
   <div class="desktop-icons">
     <div class="icon">
       <img src="https://img.icons8.com/fluency/96/recycle-bin.png" alt="Recycle Bin">
-      <span>Recycle Bin</span>
+      <span>Koszyk</span>
     </div>
-    <!-- tu możesz dodać kolejne ikony -->
+    <!-- możesz dodać kolejne ikony -->
   </div>
 
   <div class="taskbar">
@@ -224,11 +226,11 @@
         desktop.style.display = "block";
         document.body.classList.add("logged-in");
         startClock();
-        input.value = "";           // na wszelki wypadek
+        input.value = "";
       } else {
         msg.textContent = "błędne hasło";
         input.value = "";
-        input.focus();              // przywracamy fokus
+        input.focus();
       }
     }
   });
@@ -239,7 +241,7 @@
       document.getElementById("clock").textContent = 
         d.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' });
     };
-    update();                     // od razu pokaż aktualną godzinę
+    update();
     setInterval(update, 1000);
   }
 </script>
